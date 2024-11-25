@@ -1,4 +1,4 @@
-using Jokenpo.Entities;
+﻿using Jokenpo.Entities;
 
 namespace Jokenpo
 {
@@ -8,6 +8,27 @@ namespace Jokenpo
 
         static void Main(string[] args)
         {
+            LoadGameRules();
+
+            // Jogadores
+            Player p1 = new Player { Name = "Jogador 1" };
+            Player p2 = new Player { Name = "Jogador 2" };
+
+            PlayMovement(p1);
+            PlayMovement(p2);
+
+            if (p1.Choice.Weakness.ContainsKey(p2.Choice.Id))
+            {
+                Console.WriteLine($"O vencedor do duelo foi {p2.Name}, pois {p2.Choice.Name} vence {p1.Choice.Name}");
+            }
+            else if (p2.Choice.Weakness.ContainsKey(p1.Choice.Id))
+            {
+                Console.WriteLine($"O vencedor do duelo foi {p1.Name}, pois {p1.Choice.Name} vence {p2.Choice.Name}");
+            }
+            else
+            {
+                Console.WriteLine("Empate");
+            }
         }
 
         static void LoadGameRules()
@@ -63,4 +84,4 @@ namespace Jokenpo
             }
         }
     }
-        }
+}
