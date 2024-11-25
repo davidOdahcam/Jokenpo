@@ -41,5 +41,26 @@ namespace Jokenpo
             spock.AddWeakness(paper);
         }
 
+        static void PlayMovement(Player player)
+        {
+            Console.WriteLine($"Vez de {player.Name}");
+            Console.WriteLine("Escolha uma opção válida:");
+
+            availableChoices.ToList().ForEach(c => Console.WriteLine($"{c.Value.Id}: {c.Value.Name}"));
+
+            while (true)
+            {
+                Console.Write("\nDigite uma opção: ");
+                int nChoice = int.Parse(Console.ReadLine());
+
+                if (availableChoices.ContainsKey(nChoice))
+                {
+                    player.Choice = availableChoices[nChoice];
+                    break;
+                }
+
+                Console.WriteLine("Escolha uma opção válida!");
+            }
+        }
     }
         }
